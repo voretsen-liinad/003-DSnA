@@ -1,0 +1,46 @@
+@startuml
+
+start
+
+:Result = 0; 
+:Get numbers: Num1, Num2; 
+if (Num1 == 0 || Num2 == 0) then (yes) 
+else (no)
+	:Define: SumOfDigitsInNum1, SumOfDigitsInNum2; 
+	if (SumOfDigitsInNum1 >= SumOfDigitsInNum2) then (yes)
+		:Multiplicand = Num1,\nMultiplier = Num2; 
+	else (no)
+		:Multiplicand = Num2,\nMultiplier = Num1; 
+	endif
+
+	:Define: NumberOfDigitsInMultiplier (values 1...n); 
+	:Define: DigitPositionBeforeFloatingPointInMultiplier (values 0...n-1);
+	:CurrentDigitPositionInMultiplier = 0 (values 0...n-1);
+	
+	while (CurrentDigitPositionInMultiplier < NumberOfDigitsInMultiplier) is (yes) 
+		:Define: ValueOfDigitOnCurrentDigitPositionInMultiplier (values 0...9); 
+		:i = 0; 
+		:CurrentResult = 0; 
+		
+		while (i < ValueOfDigitOnCurrentDigitPositionInMultiplier) is (yes)
+			:CurrentResult += Multiplicand; 
+			:i++; 
+		endwhile (no)
+		
+		:CurrentShift = DigitPositionBeforeFloatingPointInMultiplier - CurrentDigitPositionInMultiplier; 
+		
+		if (CurrentShift >= 0) then (yes) 
+			:shift floating point in CurrentResult to the right by CurrentShift digits; 
+		else (no) 
+			:shift floating point in CurrentResult to the left by CurrentShift digits;
+		endif
+		
+		:Result += CurrentResult; 
+		:CurrentDigitPositionInMultiplier++; 
+	endwhile (no)	
+endif
+:Return Result; 
+
+stop
+
+@enduml
