@@ -1,5 +1,5 @@
 //DSnA - Webinar 3 (21.05.2022)
-//Lesson 8
+//Lesson 9
 //Created by Daniil Neserov (e-mail: maidanov1991@yandex.ru)
 #include <stdio.h>
 #include <stdlib.h>
