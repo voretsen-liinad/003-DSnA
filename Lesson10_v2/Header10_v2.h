@@ -10,27 +10,22 @@
 
 typedef int boolean;
 
-typedef struct{
+typedef struct TNode{
 	T Data;
-	struct Node *Next;
+	struct TNode *Next;
 }TNode;
 
-typedef struct{
-	int Data;
-	struct Node *Next;
-}Node;
-
-typedef struct{
-	Node *Head;
+typedef struct TList{
+	TNode *Head;
 	int Size;
-}List;
+}TList;
 
-void initList(List *lst){
+void initTList(TList *lst){
 	lst->Head = NULL;
 	lst->Size = 0;
 }
 
-boolean push(List *stack, T value){
+boolean pushT(TList *stack, T value){
 	TNode *new = (TNode*) malloc(sizeof(TNode));
 	if (new == NULL){
 		printf("Stack overflow\n");
@@ -43,7 +38,7 @@ boolean push(List *stack, T value){
 	return true;
 }
 
-T pop(List *stack){
+T popT(TList *stack){
 	if (stack->Size == 0){
 		printf("Stack is empty\n");
 		return -1;
@@ -52,6 +47,23 @@ T pop(List *stack){
 	stack->Head = stack->Head->Next;
 	stack->Size--;
 	return data;
+}
+
+
+
+typedef struct Node{
+	int Data;
+	struct Node *Next;
+}Node;
+
+typedef struct List{
+	Node *Head;
+	int Size;
+}List;
+
+void initList(List *lst){
+	lst->Head = NULL;
+	lst->Size = 0;
 }
 
 void insertNode(List *lst, int data){
